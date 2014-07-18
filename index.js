@@ -31,13 +31,19 @@ $('.add').on('click', function() {
 
     $("#cartTotal").data('cartTotal', cartTotal);
     $("#cartTotal").text('$' + cartTotal.toFixed(2));
+    if (cartTotal > 0) {
+        $('#cartImage').show();
+        $('#cartImageText').show();
+    }
 
 });
 
 
 $(document).on('click', '.removeFromCart', function() {
-    var cartTotal = $("#cartTotal").data('cartTotal') || 0;
-    var addCount = $(this).siblings('.quantity').data('addCount') || 0;
+    var cartTotalEl = $("#cartTotal")
+    var quantityEl = $(this).siblings('.quantity')
+    var cartTotal = cartTotalEl.data('cartTotal') || 0;
+    var addCount = quantityEl.data('addCount') || 0;
     var itemPrice = $(this).parent('div').data('price');
     addCount -= 1;
     cartTotal -= itemPrice;
@@ -46,25 +52,70 @@ $(document).on('click', '.removeFromCart', function() {
 //        $(this).parent().clone().appendTo('#cart').prop({ id: (cartId)});
 //        $('#cart').find('#'+cartId).find('.removeFromCart').show();
     }
-    $(this).siblings('.quantity').data('addCount', addCount);
-    $(this).siblings('.quantity').text('Quantity: ' + addCount);
+    quantityEl.data('addCount', addCount);
+    quantityEl.text('Quantity: ' + addCount);
+
+    cartTotalEl.data('cartTotal', cartTotal);
+    cartTotalEl.text('$' + cartTotal.toFixed(2));
 
     $("#cartTotal").data('cartTotal', cartTotal);
-    $("#cartTotal").text('$' + cartTotal.toFixed(2));
+    if (cartTotal < 1) {
+        $('#cartImage').hide();
+        $('#cartImageText').hide();
+    }
 
 });
 
 
 
 $('#checkout').on('click', function() {
+//    var confirmPage = document.createElement('div');
+//    confirmPage.id = 'confirmPage';
     var cartTotal = $("#cartTotal").data('cartTotal') || 0;
 
-   $('body').html('<h1 style="margin-top:200px;">Thank you for shopping!, your total is: $'+ cartTotal.toFixed(2));
+    var confirmYesButton = document.createElement('button');
+    var confirmNoButton = document.createElement('button');
+    confirmYesButton.textContent = 'Confirm Purchase';
+    confirmYesButton.id = 'confirm';
+    confirmNoButton.textContent = 'Cancel Purchase';
+    confirmNoButton.id = 'cancel';
+
+   document.getElementById('overlay').innerHTML = '<h1 id="c" style="margin-top:50px;text-align:center;">Thank you for shopping!, ' +
+       'your total is: $'+ cartTotal.toFixed(2) + '<br><br>' +
+   '<img src="http://gifs.gifbin.com/280sw007883.gif" width="500px" />';
+    $('#overlay').show('slow');
+//    document.getElementById('overlay').appendChild(confirmPage);
+    document.getElementById('overlay').appendChild(confirmNoButton);
+    document.getElementById('overlay').appendChild(confirmYesButton);
 });
 
-$('product').on('hover', function() {})
 
 
+$(document).on('click', '#cancel', function() {
+    $('#overlay').hide('slow');
+});
+
+
+
+
+//$('product').on('hover', function() {});
+
+
+$('div.featured').find('.price').append(function() {
+    var price = $(this).parent().data('price');
+    price *= 0.9;
+    $(this).data('price', price);
+    return '<div class="new-price">New Price: $'+ price.toFixed(2) + '</div>';
+});
+
+
+
+function toggleRotate() {
+    $("#left_pin").toggleClass("rotate");
+    $("#right_pin").toggleClass("neg_rotate");
+}
+
+setInterval(toggleRotate, 500);
 
 
 

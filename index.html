@@ -6,7 +6,19 @@
 		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 	<body>
+    <div id="overlay"></div>
+        <header>
+        <img id="left_pin" style="float: left"   src="images/pin.png">
+        <h1 style="float: left;margin-left: 200px;position:relative;">Lebowski's Rugs</h1>
+        <img style="float: right" id="right_pin"  src="images/pin.png">
+        <div style="clear:both;"></div>
+
+        </header>
+
+
 		<div id="cart">
+            <img src='images/biglebowski.jpg' id="cartImage" />
+            <span id="cartImageText">Good purchase, that rug will really tie the room together. </span>
 			<h2>Cart</h2>
             <h3>Total: <span id="cartTotal" data-cartTotal="0">$0.00</span></h3>
             <button id="checkout">Checkout</button>
@@ -16,7 +28,7 @@
 		<div class="product featured" id="box" data-name="Dude's Rug" data-price="339.99">
             <img src='images/rug-1.jpg' class="productImage" />
             <h1>Dude's Rug</h1>
-            <h3>$339.99</h3>
+            <h3 class="price">$339.99</h3>
             <h3 class="quantity"></h3>
             <button class="removeFromCart">Remove one from Cart</button>
 			<button class="add">Add to cart</button>
@@ -26,10 +38,10 @@
 			</div>
 		</div>
 
-		<div class="product" id="otherBox" data-name="A New Rug" data-price="249.99">
+		<div class="product featured" id="otherBox" data-name="A New Rug" data-price="249.99">
             <img src='images/rug-2.jpg' class="productImage" />
             <h1>A New Rug</h1>
-            <h3>$249.99</h3>
+            <h3 class="price">$249.99</h3>
             <h3 class="quantity"></h3>
             <button class="removeFromCart">Remove one from Cart</button>
 			<button class="add">Add to cart</button>
@@ -41,7 +53,7 @@
 		<div class="product" id="yetAnotherBox" data-name="Another New Rug" data-price="289.99">
             <img src='images/rug-3.jpg' class="productImage" />
             <h1>Another New Rug</h1>
-            <h3>$289.99</h3>
+            <h3 class="price">$289.99</h3>
             <h3 class="quantity"></h3>
             <button class="removeFromCart">Remove one from Cart</button>
 			<button class="add">Add to cart</button>
