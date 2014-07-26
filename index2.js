@@ -89,7 +89,7 @@ $.each(products, function(index, product) {
 //    productDiv.appendTo('#products');
 });
 
-console.log('a' + )
+//console.log('a' + )
 //
 //
 //		<div class="product featured" id="box" data-name="Dude's Rug" data-price="339.99">
